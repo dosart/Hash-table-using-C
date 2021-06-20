@@ -1,7 +1,3 @@
-//
-// Created by dosart on 6/20/21.
-//
-
 #include "tests.h"
 
 void run_tests() {
@@ -9,6 +5,11 @@ void run_tests() {
 
   test_add1();
   test_add2();
+
+  test_exist1();
+  test_exist2();
+  test_exist3();
+  test_exist4();
 }
 
 void test_init_table() {
@@ -20,7 +21,6 @@ void test_init_table() {
 
   assert(hash_table_count(&table)==0);
   assert(hash_table_max_count(&table)==31);
-
   hash_table_free(&table);
 }
 
@@ -34,9 +34,61 @@ void test_add1() {
   hash_table_add(&table, name, 27);
 
   assert(hash_table_count(&table)==1);
-
   hash_table_free(&table);
 }
+
 void test_add2() {
   printf("test_add2()\n");
+
+  char *names[] = {"Dosart", "Ololo"};
+
+  hash_table_t table;
+  hash_table_init(&table, 31);
+
+  hash_table_add(&table, names[0], 10);
+  hash_table_add(&table, names[1], 20);
+
+  assert(hash_table_count(&table)==2);
+  hash_table_free(&table);
+}
+
+void test_exist1() {
+  printf("test_exist1()\n");
+
+  char *names[] = {"Dosart", "Ololo"};
+
+  hash_table_t table;
+  hash_table_init(&table, 31);
+  hash_table_add(&table, names[0], 10);
+  hash_table_add(&table, names[1], 20);
+
+  assert(hash_table_is_exist(&table, names[0])==1);
+  assert(hash_table_is_exist(&table, names[1])==1);
+}
+
+void test_exist2() {
+  printf("test_exist2()\n");
+
+  char *names[] = {"Dosart", "Ololo"};
+
+  hash_table_t table;
+  hash_table_init(&table, 31);
+  hash_table_add(&table, names[0], 10);
+
+  assert(hash_table_is_exist(&table, names[0])==1);
+  assert(hash_table_is_exist(&table, names[1])==0);
+}
+
+void test_exist3() {
+  printf("test_exist3()\n");
+
+  char *names[] = {"Dosart", "Ololo"};
+  hash_table_t table;
+  hash_table_init(&table, 31);
+
+  assert(hash_table_is_exist(&table, names[0])==0);
+  assert(hash_table_is_exist(&table, names[1])==0);
+}
+void test_exist4() {
+  printf("test_exist4()\n");
 }

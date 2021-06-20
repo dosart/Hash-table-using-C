@@ -12,6 +12,7 @@ void hash_table_init(hash_table_t *table, size_t max_count) {
     }
   }
 }
+
 size_t hash_table_count(hash_table_t *table) {
   if (table) {
     return table->count;
@@ -65,4 +66,15 @@ void hash_table_add(hash_table_t *table, char *key, int value) {
 
     ++table->count;
   }
+}
+
+unsigned short hash_table_is_exist(hash_table_t *table, char *key) {
+  if (table) {
+    size_t index = elf_hash((unsigned char *) key, table->max_count);
+    for (node_t *cur = table->data[index]; cur; cur = cur->next) {
+      if (strcmp(cur->key, key)==0)
+        return 1;
+    }
+  }
+  return 0;
 }
