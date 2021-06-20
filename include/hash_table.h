@@ -1,0 +1,8 @@
+//
+// Created by dosart on 6/20/21.
+//
+
+#ifndef HASH_TABLE_INCLUDE_HASH_TABLE_H_
+#define HASH_TABLE_INCLUDE_HASH_TABLE_H_
+
+#endif //HASH_TABLE_INCLUDE_HASH_TABLE_H_
