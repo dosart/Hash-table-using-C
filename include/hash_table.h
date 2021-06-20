@@ -78,4 +78,23 @@ size_t hash_table_max_count(hash_table_t *table);
  */
 void hash_table_free(hash_table_t *table);
 
+/**
+ * @ingroup hash_table(chaining)
+ *
+ * @brief Frees memory in data structure.
+ *
+ * @param table Pointer to hash table data structure.
+ */
+unsigned long elf_hash(const unsigned char *s, size_t max_size);
+/**
+ * @ingroup hash_table(chaining)
+ *
+ * @brief Add the given key and object to hash table. If key exists, update the value.
+ *
+ * @param table Pointer to hash table data structure.
+ * @param key Key for value
+ * @param value Value by key
+ */
+void hash_table_add(hash_table_t *table, char *key, int value);
+
 #endif //HASH_TABLE_INCLUDE_HASH_TABLE_H_

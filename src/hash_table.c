@@ -33,11 +33,36 @@ void hash_table_free(hash_table_t *table) {
       node_t *next = NULL;
       while (node) {
         next = node->next;
-        free(node->key);
         free(node);
         node = next;
       }
     }
     free(table->data);
+  }
+}
+
+unsigned long elf_hash(const unsigned char *s, size_t max_size) {
+  unsigned long h = 0;
+  unsigned long high = 0;
+  while (*s) {
+    h = (h << 4) + *s++;
+    if ((high = h & 0xF0000000))
+      h ^= high >> 24;
+    h &= ~high;
+  }
+  return h%max_size;
+}
+
+void hash_table_add(hash_table_t *table, char *key, int value) {
+  if (table) {
+    node_t *node = malloc(sizeof(node_t));
+    node->key = key;
+    node->value = value;
+
+    size_t index = elf_hash((unsigned char *) key, table->max_count);
+    node->next = table->data[index];
+    table->data[index] = node;
+
+    ++table->count;
   }
 }
