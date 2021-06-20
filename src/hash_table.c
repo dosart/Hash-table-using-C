@@ -25,3 +25,19 @@ size_t hash_table_max_count(hash_table_t *table) {
   }
   return 0;
 }
+
+void hash_table_free(hash_table_t *table) {
+  if (table) {
+    for (size_t i = 0; i < table->max_count; ++i) {
+      node_t *node = table->data[i];
+      node_t *next = NULL;
+      while (node) {
+        next = node->next;
+        free(node->key);
+        free(node);
+        node = next;
+      }
+    }
+    free(table->data);
+  }
+}

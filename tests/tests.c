@@ -17,4 +17,6 @@ void test_init_table() {
 
   assert(hash_table_count(&table)==0);
   assert(hash_table_max_count(&table)==31);
+
+  hash_table_free(&table);
 }

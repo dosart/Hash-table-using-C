@@ -69,4 +69,13 @@ size_t hash_table_count(hash_table_t *table);
  */
 size_t hash_table_max_count(hash_table_t *table);
 
+/**
+ * @ingroup hash_table(chaining)
+ *
+ * @brief Frees memory in data structure.
+ *
+ * @param table Pointer to hash table data structure.
+ */
+void hash_table_free(hash_table_t *table);
+
 #endif //HASH_TABLE_INCLUDE_HASH_TABLE_H_
