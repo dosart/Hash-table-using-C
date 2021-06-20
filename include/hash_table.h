@@ -1,8 +1,72 @@
-//
-// Created by dosart on 6/20/21.
-//
 
+/*!
+@file
+@brief  Header file for hash table
+This file contains the definition of the data structure hash table
+*/
 #ifndef HASH_TABLE_INCLUDE_HASH_TABLE_H_
 #define HASH_TABLE_INCLUDE_HASH_TABLE_H_
+
+#include <stddef.h>
+#include <malloc.h>
+
+/**
+ * @defgroup hash_table(chaining)
+ *
+ * @brief Item of hash table
+ *
+ * @warning This structure created only for educational goals
+ */
+typedef struct hash_table_node_t {
+  char *key;
+  int value;
+
+  struct hash_table_node_t *next;
+} node_t;
+
+/**
+ * @ingroup hash_table(chaining)
+ *
+ * @brief Hash table data structure
+
+ * @warning This structure created only for educational goals
+ */
+typedef struct hash_table_t {
+  node_t **data;
+  size_t max_count; ///< max count elements of table
+  size_t count; ///< current count elements of table
+} hash_table_t;
+
+/**
+ * @ingroup hash_table(chaining)
+ *
+ * @brief Init hash table data structure.
+ *
+ * @param table Pointer to hash table data structure.
+ * @param max_count Max count elements of hash table
+ */
+void hash_table_init(hash_table_t *table, size_t max_count);
+
+/**
+ * @ingroup hash_table(chaining)
+ *
+ * @brief Returns count elements of hash table.
+ *
+ * @param table Pointer to hash table data structure.
+ *
+ * @returns count elements of hash table.
+ */
+size_t hash_table_count(hash_table_t *table);
+
+/**
+ * @ingroup hash_table(chaining)
+ *
+ * @brief Returns max count elements of hash table.
+ *
+ * @param table Pointer to hash table data structure.
+ *
+ * @returns max count elements of hash table.
+ */
+size_t hash_table_max_count(hash_table_t *table);
 
 #endif //HASH_TABLE_INCLUDE_HASH_TABLE_H_
