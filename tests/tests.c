@@ -68,6 +68,8 @@ void test_exist1() {
 
   assert(hash_table_is_exist(&table, names[0])==1);
   assert(hash_table_is_exist(&table, names[1])==1);
+
+  hash_table_free(&table);
 }
 
 void test_exist2() {
@@ -81,6 +83,8 @@ void test_exist2() {
 
   assert(hash_table_is_exist(&table, names[0])==1);
   assert(hash_table_is_exist(&table, names[1])==0);
+
+  hash_table_free(&table);
 }
 
 void test_exist3() {
@@ -92,6 +96,8 @@ void test_exist3() {
 
   assert(hash_table_is_exist(&table, names[0])==0);
   assert(hash_table_is_exist(&table, names[1])==0);
+
+  hash_table_free(&table);
 }
 
 void test_remove1() {
@@ -108,6 +114,8 @@ void test_remove1() {
   assert(hash_table_is_exist(&table, names[0])==0);
   assert(hash_table_is_exist(&table, names[1])==1);
   assert(hash_table_count(&table)==1);
+
+  hash_table_free(&table);
 }
 
 void test_remove2() {
@@ -125,6 +133,8 @@ void test_remove2() {
   assert(hash_table_is_exist(&table, names[0])==0);
   assert(hash_table_is_exist(&table, names[1])==0);
   assert(hash_table_count(&table)==0);
+
+  hash_table_free(&table);
 }
 
 void test_remove3() {
@@ -137,6 +147,8 @@ void test_remove3() {
   hash_table_add(&table, names[1], 20);
 
   hash_table_remove(&table, "Hello");
+
+  hash_table_free(&table);
 }
 
 void test_remove4() {
@@ -148,4 +160,6 @@ void test_remove4() {
   hash_table_remove(&table, "Hello");
 
   assert(hash_table_count(&table)==0);
+
+  hash_table_free(&table);
 }
