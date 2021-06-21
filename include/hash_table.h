@@ -108,4 +108,14 @@ void hash_table_add(hash_table_t *table, char *key, int value);
  */
 unsigned short hash_table_is_exist(hash_table_t *table, char *key);
 
+/**
+ * @ingroup hash_table(chaining)
+ *
+ * @brief Removes the value associated with key from the table.
+ *
+ * @param table Pointer to hash table data structure.
+ * @param key Key for remove.
+ */
+void hash_table_remove(hash_table_t *table, char *key);
+
 #endif //HASH_TABLE_INCLUDE_HASH_TABLE_H_

@@ -9,7 +9,11 @@ void run_tests() {
   test_exist1();
   test_exist2();
   test_exist3();
-  test_exist4();
+
+  test_remove1();
+  test_remove2();
+  test_remove3();
+  test_remove4();
 }
 
 void test_init_table() {
@@ -89,6 +93,59 @@ void test_exist3() {
   assert(hash_table_is_exist(&table, names[0])==0);
   assert(hash_table_is_exist(&table, names[1])==0);
 }
-void test_exist4() {
-  printf("test_exist4()\n");
+
+void test_remove1() {
+  printf("test_remove1()\n");
+
+  char *names[] = {"Dosart", "Ololo"};
+  hash_table_t table;
+  hash_table_init(&table, 31);
+  hash_table_add(&table, names[0], 10);
+  hash_table_add(&table, names[1], 20);
+
+  hash_table_remove(&table, names[0]);
+
+  assert(hash_table_is_exist(&table, names[0])==0);
+  assert(hash_table_is_exist(&table, names[1])==1);
+  assert(hash_table_count(&table)==1);
+}
+
+void test_remove2() {
+  printf("test_remove2()\n");
+
+  char *names[] = {"Dosart", "Ololo"};
+  hash_table_t table;
+  hash_table_init(&table, 31);
+  hash_table_add(&table, names[0], 10);
+  hash_table_add(&table, names[1], 20);
+
+  hash_table_remove(&table, names[0]);
+  hash_table_remove(&table, names[1]);
+
+  assert(hash_table_is_exist(&table, names[0])==0);
+  assert(hash_table_is_exist(&table, names[1])==0);
+  assert(hash_table_count(&table)==0);
+}
+
+void test_remove3() {
+  printf("test_remove3()\n");
+
+  char *names[] = {"Dosart", "Ololo"};
+  hash_table_t table;
+  hash_table_init(&table, 31);
+  hash_table_add(&table, names[0], 10);
+  hash_table_add(&table, names[1], 20);
+
+  hash_table_remove(&table, "Hello");
+}
+
+void test_remove4() {
+  printf("test_remove4()\n");
+
+  hash_table_t table;
+  hash_table_init(&table, 31);
+
+  hash_table_remove(&table, "Hello");
+
+  assert(hash_table_count(&table)==0);
 }

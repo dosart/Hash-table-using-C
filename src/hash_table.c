@@ -78,3 +78,22 @@ unsigned short hash_table_is_exist(hash_table_t *table, char *key) {
   }
   return 0;
 }
+
+void hash_table_remove(hash_table_t *table, char *key) {
+  if (table) {
+    size_t index = elf_hash((unsigned char *) key, table->max_count);
+    node_t *prev = NULL;
+    for (node_t *cur = table->data[index]; cur; cur = cur->next) {
+      if (strcmp(cur->key, key)==0) {
+        if (prev) {
+          prev->next = cur->next;
+        } else {
+          table->data[index] = cur->next;
+        }
+        free(cur);
+        --table->count;
+        return;
+      }
+    }
+  }
+}
