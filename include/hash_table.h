@@ -105,8 +105,22 @@ void hash_table_add(hash_table_t *table, char *key, int value);
  *
  * @param table Pointer to hash table data structure.
  * @param key Key for search.
+ *
+ * @returns true if key exist else false
  */
 unsigned short hash_table_is_exist(hash_table_t *table, char *key);
+
+/**
+ * @ingroup hash_table(chaining)
+ *
+ * @brief Returns the value associated with the given key, or NULL if it doesn't exist.
+ *
+ * @param table Pointer to hash table data structure.
+ * @param key Key for search.
+ *
+ * @returns value(pointer) associated with the given key, or NULL if it doesn't exist
+ */
+int *hash_table_is_get(hash_table_t *table, char *key);
 
 /**
  * @ingroup hash_table(chaining)

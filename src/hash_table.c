@@ -69,14 +69,19 @@ void hash_table_add(hash_table_t *table, char *key, int value) {
 }
 
 unsigned short hash_table_is_exist(hash_table_t *table, char *key) {
+  int *result = hash_table_is_get(table, key);
+  return result!=NULL ? 1 : 0;
+}
+
+int *hash_table_is_get(hash_table_t *table, char *key) {
   if (table) {
     size_t index = elf_hash((unsigned char *) key, table->max_count);
     for (node_t *cur = table->data[index]; cur; cur = cur->next) {
       if (strcmp(cur->key, key)==0)
-        return 1;
+        return &cur->value;
     }
   }
-  return 0;
+  return NULL;
 }
 
 void hash_table_remove(hash_table_t *table, char *key) {

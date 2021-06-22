@@ -14,6 +14,10 @@ void run_tests() {
   test_remove2();
   test_remove3();
   test_remove4();
+
+  test_get1();
+  test_get2();
+  test_get3();
 }
 
 void test_init_table() {
@@ -160,6 +164,61 @@ void test_remove4() {
   hash_table_remove(&table, "Hello");
 
   assert(hash_table_count(&table)==0);
+
+  hash_table_free(&table);
+}
+
+void test_get1() {
+  printf("test_get1()\n");
+
+  char *names[] = {"Dosart", "Ololo"};
+  hash_table_t table;
+  hash_table_init(&table, 31);
+  hash_table_add(&table, names[0], 10);
+  hash_table_add(&table, names[1], 20);
+
+  int value1 = *(int *) hash_table_is_get(&table, "Dosart");
+  int value2 = *(int *) hash_table_is_get(&table, "Ololo");
+
+  assert(value1==10);
+  assert(value2==20);
+  assert(hash_table_count(&table)==2);
+  assert(hash_table_is_exist(&table, "Dosart")==1);
+  assert(hash_table_is_exist(&table, "Ololo")==1);
+
+  hash_table_free(&table);
+}
+
+void test_get2() {
+  printf("test_get2()\n");
+
+  char *names[] = {"Dosart", "Ololo"};
+  hash_table_t table;
+  hash_table_init(&table, 31);
+  hash_table_add(&table, names[0], 10);
+
+  int value1 = *(int *) hash_table_is_get(&table, "Dosart");
+
+  assert(value1==10);
+  assert(hash_table_count(&table)==1);
+  assert(hash_table_is_exist(&table, "Dosart")==1);
+
+  hash_table_free(&table);
+}
+
+void test_get3() {
+  printf("test_get3()\n");
+
+  char *names[] = {"Dosart", "Ololo"};
+  hash_table_t table;
+  hash_table_init(&table, 31);
+  hash_table_add(&table, names[0], 10);
+
+  int *value1 = (int *) hash_table_is_get(&table, "Dosart1");
+
+  assert(value1==NULL);
+  assert(hash_table_count(&table)==1);
+  assert(hash_table_is_exist(&table, "Dosart")==1);
 
   hash_table_free(&table);
 }

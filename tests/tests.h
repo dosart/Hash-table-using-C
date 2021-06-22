@@ -22,4 +22,8 @@ void test_remove2();
 void test_remove3();
 void test_remove4();
 
+void test_get1();
+void test_get2();
+void test_get3();
+
 #endif //HASH_TABLE_TESTS_TESTS_H_
